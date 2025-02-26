@@ -1,0 +1,9 @@
+node_modules/
+config/private.json
+*.log
+.env
+wallets.json
+node_modules
+.env
+wallets.json
+node_modules

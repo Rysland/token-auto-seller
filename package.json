@@ -1,0 +1,23 @@
+{
+  "name": "token-auto-seller",
+  "version": "1.0.0",
+  "description": "Автоматическая продажа токенов на EVM-сетях",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blockchain",
+    "ethers",
+    "dex",
+    "evm"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5",
+    "express": "^4.21.2"
+  }
+}

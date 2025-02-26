@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление продажами токенов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wallets">
+        <!-- Карточка для кошелька 1 -->
+        <div class="wallet-card" data-wallet-id="1">
+            <h2 contenteditable="true" id="wallet-name-1">Кошелек 1</h2>
+            <div id="status-1" class="status">Проверка статуса...</div>
+            <label for="token-1">Адрес токена:</label>
+            <input type="text" id="token-1" placeholder="Например, 0x55d398..." required>
+            <label for="network-1">Сеть:</label>
+            <select id="network-1" onchange="updateTargetTokenOptions(1)">
+                <option value="bsc">BSC</option>
+                <option value="base">Base</option>
+                <option value="ethernet">Ethereum</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="optimism">Optimism</option>
+                <option value="polygon">Polygon</option>
+                <option value="linea">Linea</option>
+                <option value="opbnb">opBNB</option>
+                <option value="zkevm">zkEVM</option>
+                <option value="zksync">zkSync</option>
+            </select>
+            <label for="dex-1">DEX:</label>
+            <select id="dex-1" onchange="updateTargetTokenOptions(1)">
+                <option value="pancakeswap-universal">PancakeSwap Universal</option>
+                <option value="uniswap-v4-universal">Uniswap V4 Universal</option>
+                <option value="sushiswap-v2">SushiSwap V2</option>
+                <option value="1inch-v2">1inch V2</option>
+            </select>
+            <label for="gasPrice-1">Цена газа (Gwei):</label>
+            <input type="number" id="gasPrice-1" value="7" required>
+            <label for="slippage-1">Слиппедж (%):</label>
+            <input type="number" id="slippage-1" value="1" required>
+            <label for="targetToken-1">Целевой токен:</label>
+            <select id="targetToken-1" required></select> <!-- Пустой select, заполняется скриптом -->
+            <label for="gasIncrease-1">Увеличение газа (%):</label>
+            <input type="number" id="gasIncrease-1" value="0" required>
+            <label for="slippageIncrease-1">Увеличение слиппеджа (%):</label>
+            <input type="number" id="slippageIncrease-1" value="0.5" required>
+            <button id="start-1">Запустить продажу</button>
+            <button id="stop-1">Остановить продажу</button>
+        </div>
+
+        <!-- Карточка для кошелька 2 -->
+        <div class="wallet-card" data-wallet-id="2">
+            <h2 contenteditable="true" id="wallet-name-2">Кошелек 2</h2>
+            <div id="status-2" class="status">Проверка статуса...</div>
+            <label for="token-2">Адрес токена:</label>
+            <input type="text" id="token-2" placeholder="Например, 0x55d398..." required>
+            <label for="network-2">Сеть:</label>
+            <select id="network-2" onchange="updateTargetTokenOptions(2)">
+                <option value="bsc">BSC</option>
+                <option value="base">Base</option>
+                <option value="ethernet">Ethereum</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="optimism">Optimism</option>
+                <option value="polygon">Polygon</option>
+                <option value="linea">Linea</option>
+                <option value="opbnb">opBNB</option>
+                <option value="zkevm">zkEVM</option>
+                <option value="zksync">zkSync</option>
+            </select>
+            <label for="dex-2">DEX:</label>
+            <select id="dex-2" onchange="updateTargetTokenOptions(2)">
+                <option value="pancakeswap-universal">PancakeSwap Universal</option>
+                <option value="uniswap-v4-universal">Uniswap V4 Universal</option>
+                <option value="sushiswap-v2">SushiSwap V2</option>
+                <option value="1inch-v2">1inch V2</option>
+            </select>
+            <label for="gasPrice-2">Цена газа (Gwei):</label>
+            <input type="number" id="gasPrice-2" value="7" required>
+            <label for="slippage-2">Слиппедж (%):</label>
+            <input type="number" id="slippage-2" value="1" required>
+            <label for="targetToken-2">Целевой токен:</label>
+            <select id="targetToken-2" required></select> <!-- Пустой select, заполняется скриптом -->
+            <label for="gasIncrease-2">Увеличение газа (%):</label>
+            <input type="number" id="gasIncrease-2" value="0" required>
+            <label for="slippageIncrease-2">Увеличение слиппеджа (%):</label>
+            <input type="number" id="slippageIncrease-2" value="0.5" required>
+            <button id="start-2">Запустить продажу</button>
+            <button id="stop-2">Остановить продажу</button>
+        </div>
+
+        <!-- Карточка для кошелька 3 -->
+        <div class="wallet-card" data-wallet-id="3">
+            <h2 contenteditable="true" id="wallet-name-3">Кошелек 3</h2>
+            <div id="status-3" class="status">Проверка статуса...</div>
+            <label for="token-3">Адрес токена:</label>
+            <input type="text" id="token-3" placeholder="Например, 0x55d398..." required>
+            <label for="network-3">Сеть:</label>
+            <select id="network-3" onchange="updateTargetTokenOptions(3)">
+                <option value="bsc">BSC</option>
+                <option value="base">Base</option>
+                <option value="ethernet">Ethereum</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="optimism">Optimism</option>
+                <option value="polygon">Polygon</option>
+                <option value="linea">Linea</option>
+                <option value="opbnb">opBNB</option>
+                <option value="zkevm">zkEVM</option>
+                <option value="zksync">zkSync</option>
+            </select>
+            <label for="dex-3">DEX:</label>
+            <select id="dex-3" onchange="updateTargetTokenOptions(3)">
+                <option value="pancakeswap-universal">PancakeSwap Universal</option>
+                <option value="uniswap-v4-universal">Uniswap V4 Universal</option>
+                <option value="sushiswap-v2">SushiSwap V2</option>
+                <option value="1inch-v2">1inch V2</option>
+            </select>
+            <label for="gasPrice-3">Цена газа (Gwei):</label>
+            <input type="number" id="gasPrice-3" value="7" required>
+            <label for="slippage-3">Слиппедж (%):</label>
+            <input type="number" id="slippage-3" value="1" required>
+            <label for="targetToken-3">Целевой токен:</label>
+            <select id="targetToken-3" required></select> <!-- Пустой select, заполняется скриптом -->
+            <label for="gasIncrease-3">Увеличение газа (%):</label>
+            <input type="number" id="gasIncrease-3" value="0" required>
+            <label for="slippageIncrease-3">Увеличение слиппеджа (%):</label>
+            <input type="number" id="slippageIncrease-3" value="0.5" required>
+            <button id="start-3">Запустить продажу</button>
+            <button id="stop-3">Остановить продажу</button>
+        </div>
+
+        <!-- Карточка для кошелька 4 -->
+        <div class="wallet-card" data-wallet-id="4">
+            <h2 contenteditable="true" id="wallet-name-4">Кошелек 4</h2>
+            <div id="status-4" class="status">Проверка статуса...</div>
+            <label for="token-4">Адрес токена:</label>
+            <input type="text" id="token-4" placeholder="Например, 0x55d398..." required>
+            <label for="network-4">Сеть:</label>
+            <select id="network-4" onchange="updateTargetTokenOptions(4)">
+                <option value="bsc">BSC</option>
+                <option value="base">Base</option>
+                <option value="ethernet">Ethereum</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="optimism">Optimism</option>
+                <option value="polygon">Polygon</option>
+                <option value="linea">Linea</option>
+                <option value="opbnb">opBNB</option>
+                <option value="zkevm">zkEVM</option>
+                <option value="zksync">zkSync</option>
+            </select>
+            <label for="dex-4">DEX:</label>
+            <select id="dex-4" onchange="updateTargetTokenOptions(4)">
+                <option value="pancakeswap-universal">PancakeSwap Universal</option>
+                <option value="uniswap-v4-universal">Uniswap V4 Universal</option>
+                <option value="sushiswap-v2">SushiSwap V2</option>
+                <option value="1inch-v2">1inch V2</option>
+            </select>
+            <label for="gasPrice-4">Цена газа (Gwei):</label>
+            <input type="number" id="gasPrice-4" value="7" required>
+            <label for="slippage-4">Слиппедж (%):</label>
+            <input type="number" id="slippage-4" value="1" required>
+            <label for="targetToken-4">Целевой токен:</label>
+            <select id="targetToken-4" required></select> <!-- Пустой select, заполняется скриптом -->
+            <label for="gasIncrease-4">Увеличение газа (%):</label>
+            <input type="number" id="gasIncrease-4" value="0" required>
+            <label for="slippageIncrease-4">Увеличение слиппеджа (%):</label>
+            <input type="number" id="slippageIncrease-4" value="0.5" required>
+            <button id="start-4">Запустить продажу</button>
+            <button id="stop-4">Остановить продажу</button>
+        </div>
+
+        <!-- Карточка для кошелька 5 -->
+        <div class="wallet-card" data-wallet-id="5">
+            <h2 contenteditable="true" id="wallet-name-5">Кошелек 5</h2>
+            <div id="status-5" class="status">Проверка статуса...</div>
+            <label for="token-5">Адрес токена:</label>
+            <input type="text" id="token-5" placeholder="Например, 0x55d398..." required>
+            <label for="network-5">Сеть:</label>
+            <select id="network-5" onchange="updateTargetTokenOptions(5)">
+                <option value="bsc">BSC</option>
+                <option value="base">Base</option>
+                <option value="ethernet">Ethereum</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="optimism">Optimism</option>
+                <option value="polygon">Polygon</option>
+                <option value="linea">Linea</option>
+                <option value="opbnb">opBNB</option>
+                <option value="zkevm">zkEVM</option>
+                <option value="zksync">zkSync</option>
+            </select>
+            <label for="dex-5">DEX:</label>
+            <select id="dex-5" onchange="updateTargetTokenOptions(5)">
+                <option value="pancakeswap-universal">PancakeSwap Universal</option>
+                <option value="uniswap-v4-universal">Uniswap V4 Universal</option>
+                <option value="sushiswap-v2">SushiSwap V2</option>
+                <option value="1inch-v2">1inch V2</option>
+            </select>
+            <label for="gasPrice-5">Цена газа (Gwei):</label>
+            <input type="number" id="gasPrice-5" value="7" required>
+            <label for="slippage-5">Слиппедж (%):</label>
+            <input type="number" id="slippage-5" value="1" required>
+            <label for="targetToken-5">Целевой токен:</label>
+            <select id="targetToken-5" required></select> <!-- Пустой select, заполняется скриптом -->
+            <label for="gasIncrease-5">Увеличение газа (%):</label>
+            <input type="number" id="gasIncrease-5" value="0" required>
+            <label for="slippageIncrease-5">Увеличение слиппеджа (%):</label>
+            <input type="number" id="slippageIncrease-5" value="0.5" required>
+            <button id="start-5">Запустить продажу</button>
+            <button id="stop-5">Остановить продажу</button>
+        </div>
+    </div>
+    <script src="https://cdn.ethers.io/lib/ethers-6.13.5.umd.min.js"></script> <!-- Используем CDN для Ethers.js v6.13.5 -->
+    <script src="script.js"></script> <!-- Подключаем JavaScript для взаимодействия с API -->
+    <script>
+        // Функция для обновления опций целевого токена на основе сети и DEX
+        function updateTargetTokenOptions(walletId) {
+            const network = document.getElementById(`network-${walletId}`).value;
+            const dex = document.getElementById(`dex-${walletId}`).value;
+            const targetTokenSelect = document.getElementById(`targetToken-${walletId}`);
+            targetTokenSelect.innerHTML = ''; // Очищаем текущие опции
+
+            // WBNB доступен только для PancakeSwap Universal в сети BSC
+            if (network === 'bsc' && dex === 'pancakeswap-universal') {
+                const option = document.createElement('option');
+                option.value = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c';
+                option.text = 'WBNB - 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c';
+                targetTokenSelect.appendChild(option);
+            } else {
+                const option = document.createElement('option');
+                option.value = '';
+                option.text = 'Нет доступных токенов';
+                option.disabled = true;
+                option.selected = true;
+                targetTokenSelect.appendChild(option);
+            }
+        }
+
+        // Инициализация опций при загрузке страницы
+        window.onload = () => {
+            for (let i = 1; i <= 5; i++) {
+                updateTargetTokenOptions(i);
+            }
+        };
+    </script>
+</body>
+</html>

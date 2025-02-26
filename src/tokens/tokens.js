@@ -1,0 +1,27 @@
+module.exports = {
+    usdt: {
+        ethernet: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+        polygon: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+        base: '0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA',
+        arbitrum: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9',
+        optimism: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
+        bsc: '0x55d398326f99059fF775485246999027B3197955'
+    },
+    usdc: {
+        ethernet: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        polygon: '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
+        base: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+        arbitrum: '0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8',
+        optimism: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
+        bsc: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d'
+    },
+    wbnb: { bsc: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c' },
+    weth: {
+        ethernet: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+        base: '0x4200000000000000000000000000000000000006',
+        arbitrum: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
+        optimism: '0x4200000000000000000000000000000000000006',
+        polygon: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
+    },
+    wmatic: { polygon: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270' }
+};
