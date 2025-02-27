@@ -37,7 +37,7 @@ module.exports = {
             opbnb: '0xB89a6778D1efE7a5b7096757A21b810CC2886fa1',
             zkevm: '0xB89a6778D1efE7a5b7096757A21b810CC2886fa1',
             zksync: '0xdAee41E335322C85ff2c5a6745c98e1351806e98'
-        }
+        } // PancakeSwap Universal Router использует только версию universal
     },
     sushiswap: {
         v2: {

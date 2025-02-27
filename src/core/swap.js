@@ -1,8 +1,9 @@
-const { ethers } = require('ethers'); // Импорт ethers для BigNumber и ZeroAddress
+const { ethers } = require('ethers'); // Импортируем ethers полностью, включая JsonRpcProvider
 const { getDexRouter } = require('../utils/contract'); // Импорт функции для получения роутера
 
 async function swapTokens(token, amountIn, dex, gasPrice, slippage, targetToken, wallet, network) {
-    const router = await getDexRouter(dex, network); // Получаем роутер DEX
+    const version = dex === 'pancakeswap-universal' ? 'universal' : 'v2'; // Используем universal для PancakeSwap Universal
+    const router = await getDexRouter(dex, network, version);
     const provider = wallet.provider;
     const signer = wallet;
 
@@ -25,7 +26,7 @@ async function swapTokens(token, amountIn, dex, gasPrice, slippage, targetToken,
     }
 
     // Расчёт минимальной суммы выхода с учётом slippage
-    const amountOutMin = amounts[1].mul(BigInt(10000 - Number(slippageBigInt / BigInt(100)))).div(BigInt(10000)); // Явное преобразование для BigInt
+    const amountOutMin = amounts[1].mul(BigInt(10000) - BigInt(Number(slippageBigInt / BigInt(100)))).div(BigInt(10000)); // Явное преобразование для BigInt
 
     // Выполняем свап
     const tx = await router.swapExactTokensForTokens(
@@ -53,6 +54,8 @@ async function attemptSale(token, amountIn, dex, gasPrice, slippage, targetToken
             console.log(`Тип currentSlippage: ${typeof currentSlippage}, значение: ${currentSlippage.toString()}`);
             console.log(`Попытка продажи #${attempt} в сети ${network}, сумма: ${ethers.formatUnits(amountIn, await token.decimals())}, целевой токен: ${targetToken}`); // Логирование WBNB
 
+            const version = dex === 'pancakeswap-universal' ? 'universal' : 'v2'; // Используем universal для PancakeSwap Universal
+            const router = await getDexRouter(dex, network, version);
             const success = await swapTokens(token, amountIn, dex, currentGasPrice, currentSlippage, targetToken, wallet, network);
             if (success) return true;
 
@@ -62,7 +65,7 @@ async function attemptSale(token, amountIn, dex, gasPrice, slippage, targetToken
             currentGasPrice = currentGasPrice * (BigInt(100) + gasIncrease) / BigInt(100); // Явное преобразование
             currentSlippage = currentSlippage * (BigInt(100) + slippageIncrease) / BigInt(100); // Явное преобразование
         } catch (error) {
-            console.error(`Попытка ${attempt} продажи провалилась: ${error}`);
+            console.error(`Попытка ${attempt} продажи провалилась: ${error.message}`);
         }
     }
     return false;
